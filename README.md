@@ -380,7 +380,7 @@ The documentation includes placeholder screenshots that can be replaced with fin
 
 ### Remediation Report Overview
 
-![Remediation Report Overview](screenshots/RemediatationsOverview.png)
+![Remediation Report Overview](screenshots/RemediationsOverview.png)
 
 ---
 
