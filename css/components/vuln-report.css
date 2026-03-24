@@ -1,0 +1,144 @@
+/* vuln-report.css - scoped to .vuln-* and .notes-* */
+
+.vuln-banner {
+  border: 1px solid #4C9ED9;
+  background: #C0E1F9;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.vuln-muted {
+  color: #666;
+}
+
+.vuln-sev-header {
+  margin: 14px 0 8px 0;
+  padding: 6px 10px;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.vuln-sev-header.critical { background-color: #D43F3A; }
+.vuln-sev-header.high { background-color: #EE9336; }
+.vuln-sev-header.medium { background-color: #FDC431; color: #000; }
+.vuln-sev-header.low { background-color: #4CAE4C; }
+.vuln-sev-header.info { background-color: #357ABD; }
+
+.vuln-badge-new {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  background: #111;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 6px;
+}
+
+.vuln-item-new > h6 {
+  box-shadow: inset 0 0 0 9999px rgba(0,0,0,0.03);
+}
+
+.vuln-meta td {
+  width: 30%;
+}
+
+.vuln-pre {
+  white-space: normal;
+}
+
+/*
+  Spacing guard:
+  In the modern accordion styling, the details container can visually crowd
+  the header. Add a small top padding so the first block (Summary Information)
+  never appears to merge with the vulnerability title row.
+*/
+.vuln-details {
+  padding-top: 10px;
+}
+
+
+/* Prevent accordion body from overlapping the header (Vulnerability Report only) */
+[data-component="VulnReport"] #accordion .toggle ~ div {
+  margin: 8px 0 14px 0 !important;
+}
+
+
+.vuln-devices {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.notes-panel {
+  margin-top: 12px;
+  border-top: 1px solid #E2E6E8;
+  padding-top: 12px;
+}
+
+.notes-textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 8px;
+  border: 1px solid #d0d4d6;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.notes-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Notes save row */
+.notes-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.notes-save-btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #474F51;
+  background: #474F51;
+  color: #fff;
+  cursor: pointer;
+}
+
+.notes-save-btn:hover {
+  filter: brightness(0.95);
+}
+
+.notes-status {
+  font-size: 12px;
+  color: #444;
+}
+
+/* Affected device links + per-device NEW badge */
+.vuln-device-link {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.vuln-badge-device-new {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  background: #111;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 8px;
+}
+
+@media print {
+  .vuln-banner { display: none; }
+  .notes-textarea { border: none; }
+  .notes-actions { display: none; }
+  .vuln-device-link { text-decoration: none; }
+}

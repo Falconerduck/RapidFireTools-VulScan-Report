@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 2,
+  "client": {
+    "id": "client-template",
+    "name": "Client Name"
+  },
+  "updatedAt": "2026-01-01T00:00:00.000Z",
+  "notes": {},
+  "deviceRenames": {},
+  "remediation": {
+    "schemaVersion": 1,
+    "known": {
+      "hosts": {},
+      "vulns": {},
+      "combos": {}
+    },
+    "reviewQueue": {},
+    "log": {}
+  }
+}

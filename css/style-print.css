@@ -1,0 +1,50 @@
+/* Print Style Sheet */
+ 
+	#nav {
+		display: none !important;
+	}
+	
+	.noPrint
+		{display: none !important;
+	}
+	
+	
+	img {
+		max-width: 500px;
+	}
+	
+	li.cb {
+		display: none !important;
+	}
+	
+	@page {
+		margin: 0.5cm;
+	}
+	
+	body {
+		font: 12pt Georgia, "Times New Roman", Times, serif;
+		line-height: 1.3;
+		margin: 0.5cm;
+	}
+	
+	h1 {
+		font-size: 24pt;
+		}
+	
+	h2 {
+		font-size: 14pt;
+		margin-top: 25px;
+	}
+	
+	
+	p a {
+		word-wrap: break-word;
+	}
+	
+	a {
+	color: #000;
+	}
+		
+	.accordion-group.multiOpenAccordion .accordion-body.collapse.multiOpenAccordion {
+		height: auto !important;
+	}

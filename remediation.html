@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<!--
+  Halcyonic by HTML5 UP
+  html5up.net | @n33co
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Remediations</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Theme (applies before CSS to avoid flash) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('vulscanTheme') || 'light';
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+
+    <!-- Template JS (kept local/offline) -->
+    <script src="js/jquery.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/sc.js"></script>
+
+    <noscript>
+      <link rel="stylesheet" href="css/skel.css" />
+      <link rel="stylesheet" href="css/style.css" />
+      <link rel="stylesheet" href="css/style-desktop.css" />
+    </noscript>
+    <!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+
+    <link rel="stylesheet" href="css/jquery-ui.structure.css" />
+    <link rel="stylesheet" href="css/jquery-ui.theme.css" />
+    <link rel="stylesheet" href="css/sc.css" />
+    <link rel="stylesheet" href="css/style-print.css" type="text/css" media="print" />
+
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="css/components/remediation-report.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+  </head>
+  <body class="subpage body-dashboard body-remediation">
+
+    <!-- Header -->
+    <div id="header-wrapper">
+      <header id="header" class="container">
+        <div class="row">
+          <div class="12u">
+
+            <!-- COMPONENT: AppShell START -->
+            <div style="margin-top: 10px;" id="divlogo" data-component="AppShell" data-page="remediation">
+              <img id="logo" src="images/companylogo.png" alt="logo" />
+              <h2 class="app-shell-title" style="color: white;"></h2>
+            </div>
+            <!-- COMPONENT: AppShell END -->
+
+            <nav id="nav">
+              <a href="index.html">Dashboard</a>
+              <a href="reportsbyvuln/allvulns.html" onclick="showLoading();">Vulnerability Report</a>
+              <a href="devices.html">Device Names</a>
+              <a href="remediation.html">Remediations</a>
+            </nav>
+
+          </div>
+        </div>
+      </header>
+    </div>
+
+    <!-- Content -->
+    <div id="content-wrapper">
+      <div id="content">
+        <div class="container">
+
+          <div id="loading" class="row" style="display: none;">
+            <div class="12u ui-state-highlight-blue" style="padding:0; margin-left: 20px; height: 86px;">
+              <p style="text-align: center;">Loading (takes a moment)...</p>
+            </div>
+          </div>
+
+          <!-- COMPONENT: NotesStore START -->
+          <div data-component="NotesStore" style="display:none"></div>
+          <!-- COMPONENT: NotesStore END -->
+
+          <div class="row">
+            <div class="12u">
+              <section>
+                <header>
+                  <h2>Remediation Report</h2>
+                  <h3>
+                    Use the <a href="index.html">Dashboard</a> to import scans, then review items that have disappeared between scans and maintain a mitigation log.
+                  </h3>
+                </header>
+
+                <!-- COMPONENT: RemediationReport START -->
+                <div data-component="RemediationReport"></div>
+                <!-- COMPONENT: RemediationReport END -->
+              </section>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- App JS (offline) -->
+    <script src="js/logger.js"></script>
+    <script src="js/client-settings.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/utils/dom.js"></script>
+    <script src="js/utils/normalize.js"></script>
+    <script src="js/utils/file.js"></script>
+    <script src="js/utils/hosts.js"></script>
+    <script src="js/storage.js"></script>
+
+    <script src="js/vendor/csv.js"></script>
+
+    <script src="js/parsers/parseByIssueCsv.js"></script>
+    <script src="js/parsers/parseByDeviceCsv.js"></script>
+    <script src="js/parsers/computeNewFindings.js"></script>
+    <script src="js/parsers/buildHostIndex.js"></script>
+    <script src="js/parsers/mergeNotes.js"></script>
+
+    <script src="js/ComponentRegistry.js"></script>
+
+    <script src="js/components/AppShell.js"></script>
+    <script src="js/components/NotesStore.js"></script>
+    <script src="js/components/RemediationReport.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        window.ComponentRegistry.init([
+          'AppShell',
+          'NotesStore',
+          'RemediationReport',
+        ]);
+      });
+    </script>
+  </body>
+</html>

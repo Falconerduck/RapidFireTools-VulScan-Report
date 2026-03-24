@@ -1,0 +1,111 @@
+/* device-renames.css - scoped to .rename-* */
+
+.rename-card {
+  border: 1px solid #d0d4d6;
+  border-radius: 6px;
+  padding: 14px;
+  background: #fff;
+}
+
+.rename-banner {
+  padding: 10px;
+  border: 1px solid #d0d4d6;
+  border-radius: 6px;
+  background: #f7f7f7;
+}
+
+.rename-help {
+  margin-top: 6px;
+  color: #444;
+}
+
+.rename-block {
+  margin-top: 12px;
+}
+
+.rename-label {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.rename-search {
+  width: 100%;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #d0d4d6;
+}
+
+.rename-actions {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rename-status {
+  font-size: 12px;
+  color: #444;
+}
+
+.rename-btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #474F51;
+  background: #474F51;
+  color: #fff;
+  cursor: pointer;
+}
+
+.rename-btn-secondary {
+  background: #ffffff;
+  color: #474F51;
+}
+
+.rename-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+}
+
+.rename-table th,
+.rename-table td {
+  border-bottom: 1px solid #e2e6e8;
+  padding: 8px;
+  vertical-align: top;
+}
+
+.rename-table th {
+  text-align: left;
+}
+
+
+/* Sortable headers (standardized with Dashboard/Remediation tables) */
+.rename-table th[data-sort] {
+  cursor: pointer;
+  user-select: none;
+}
+
+.rename-table th[data-sort]:hover {
+  text-decoration: underline;
+}
+
+
+.rename-input {
+  width: 100%;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #d0d4d6;
+}
+
+.rename-hint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #666;
+}
+
+@media print {
+  .rename-card {
+    display: none;
+  }
+}

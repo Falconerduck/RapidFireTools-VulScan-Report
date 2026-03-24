@@ -350,37 +350,37 @@ Use this order:
 
 The documentation includes placeholder screenshots that can be replaced with finalized images from your client-branded build.
 
-### Dashboard overview
+### Initial Dashboard Landing Page
 
-![Dashboard Overview](docs/screenshots/01-dashboard-overview.png)
+![Initial Dashboard Landing Page](screenshots/DashboardInitialLanding.png)
 
-### Import workflow
+### Import File Dashboard
 
-![Import Workflow](docs/screenshots/02-import-workflow.png)
+![Import File Dashboard](screenshots/DashboardFileUpload.png)
 
-### Vulnerability report
+### Dashboard After Upload
 
-![Vulnerability Report](docs/screenshots/03-vulnerability-report.png)
+![Dashboard After Upload](screenshots/DashboardAfterUpload.png)
 
-### Host report
+### Vulnerability Report Overview
 
-![Host Report](docs/screenshots/04-host-report.png)
+![Vulnerability Report Overview](screenshots/VulnerabilityReportOverview.png)
 
-### Device names
+### Vulnerability Report Full Details
 
-![Device Alias Management](docs/screenshots/05-device-alias-management.png)
+![Vulnerability Report Full Details](screenshots/VulnerabilityReportOverview.png)
 
-### Remediation report
+### Host Vulnerability Report
 
-![Remediation Report](docs/screenshots/06-remediation-report.png)
+![Host Vulnerability Report](screenshots/VulnerabilityReportHostExample.png)
 
-### Client setup
+### Device Names Example
 
-![Client Setup](docs/screenshots/07-client-setup.png)
+![Device Names Example](screenshots/DeviceNamesExample.png)
 
-### Exported client JSON example
+### Remediation Report Overview
 
-![Exported Client Data JSON Example](docs/screenshots/08-exported-client-data-json.png)
+![Remediation Report Overview](screenshots/RemediatationsOverview.png)
 
 ---
 

@@ -1,0 +1,590 @@
+/*
+  theme.css
+  Global theme layer (light + dark) for VulScan Offline Reporter.
+  - Offline-only (no external assets).
+  - Designed as an override layer on top of the existing template CSS.
+  - Dark mode is toggled via: html[data-theme="dark"].
+*/
+
+:root {
+  --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* Light theme palette */
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-2: #f0f5ff;
+  --surface-3: rgba(15, 23, 42, 0.03);
+  --text: #0b1220;
+  --muted: #475569;
+  --muted-2: #64748b;
+  --border: rgba(15, 23, 42, 0.12);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.10);
+
+  --primary: #0b3d91;
+  --primary-2: #1d4ed8;
+  --on-primary: #ffffff;
+  --link: #1d4ed8;
+
+  --header-bg: linear-gradient(90deg, #061a3a, #0b2a5b);
+  --header-text: #ffffff;
+
+  /* Severity colors (requested palette) */
+  --sev-critical: #5a0f1b;  /* dark burgundy */
+  --sev-high: #c62828;      /* lighter red */
+  --sev-medium: #f59e0b;    /* orange */
+  --sev-low: #facc15;       /* yellow */
+  --sev-info: #2563eb;      /* blue */
+
+  /* Status colors */
+  --ok-bg: rgba(34, 197, 94, 0.12);
+  --ok-border: rgba(34, 197, 94, 0.45);
+  --warn-bg: rgba(245, 158, 11, 0.14);
+  --warn-border: rgba(245, 158, 11, 0.5);
+  --info-bg: rgba(37, 99, 235, 0.12);
+  --info-border: rgba(37, 99, 235, 0.45);
+  --err-bg: rgba(220, 38, 38, 0.12);
+  --err-border: rgba(220, 38, 38, 0.45);
+}
+
+html[data-theme="dark"] {
+  --bg: #0b1220;
+  --surface: #0f172a;
+  --surface-2: #111c33;
+  --surface-3: rgba(226, 232, 240, 0.04);
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --muted-2: #a6b1c3;
+  --border: rgba(226, 232, 240, 0.16);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.60);
+
+  --primary: #3b82f6;
+  --primary-2: #60a5fa;
+  --on-primary: #0b1220;
+  --link: #60a5fa;
+
+  --header-bg: linear-gradient(90deg, #020617, #0b1220);
+  --header-text: #e2e8f0;
+}
+
+/* Base */
+html, body {
+  font-family: var(--font-sans) !important;
+}
+
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+a {
+  color: var(--link);
+}
+
+/* Remove legacy text-shadow on table cells */
+td {
+  text-shadow: none !important;
+}
+
+strong {
+  color: var(--text) !important;
+}
+
+tr {
+  color: var(--text) !important;
+  text-shadow: none !important;
+}
+
+/* Layout wrappers */
+#header-wrapper {
+  background: var(--header-bg) !important;
+}
+
+#header {
+  padding-top: 10px;
+}
+
+#content-wrapper {
+  background: transparent !important;
+}
+
+/* AppShell header area */
+[data-component="AppShell"] {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+[data-component="AppShell"] #logo {
+  height: 44px;
+  width: auto;
+}
+
+.app-shell-title {
+  color: var(--header-text) !important;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.app-shell-actions {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.10);
+  color: var(--header-text);
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.16);
+}
+
+.theme-toggle .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.75);
+}
+
+html[data-theme="dark"] .theme-toggle .dot {
+  background: rgba(255,255,255,0.85);
+}
+
+/* Top nav */
+#nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#nav a {
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+  color: var(--header-text) !important;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+#nav a:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+#nav a.nav-active {
+  border-color: rgba(255,255,255,0.34);
+  background: rgba(255,255,255,0.18);
+}
+
+/* Modern card surface for sections */
+section {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 14px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Component cards (ensure dark mode doesn't inherit hard-coded light backgrounds) */
+.import-card,
+.import-field,
+.rename-card,
+.rename-banner,
+.rem-toolbar,
+.rem-bulk,
+.host-header,
+.host-header-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.import-field,
+.rem-bulk {
+  background: var(--surface-2) !important;
+}
+
+.notes-panel {
+  border-top-color: var(--border) !important;
+}
+
+.notes-hint,
+.dash-muted,
+.vuln-muted,
+.host-muted,
+.rem-muted,
+.rename-hint,
+.import-hint {
+  color: var(--muted) !important;
+}
+
+section header h2,
+section header h3 {
+  color: var(--text) !important;
+}
+
+/* Summary lists */
+ul.link-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.link-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+ul.link-list li:last-child {
+  border-bottom: none;
+}
+
+ul.link-list span[data-role^="summary-"] {
+  color: var(--primary) !important;
+  font-weight: 700;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+td {
+  background: var(--surface) !important;
+  border-right: 1px solid transparent !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+tr:nth-child(odd) td {
+  background: var(--surface-2) !important;
+}
+
+/* Inputs */
+input[type="text"],
+textarea,
+select {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 10px !important;
+}
+
+textarea {
+  line-height: 1.35;
+}
+
+/* Buttons (map common component buttons) */
+button,
+.import-btn,
+.filters-btn,
+.rename-btn,
+.notes-save-btn,
+.rem-btn,
+.rem-row-actions button {
+  border-radius: 10px !important;
+}
+
+.import-btn,
+.filters-btn,
+.rename-btn,
+.notes-save-btn,
+.rem-btn,
+.rem-row-actions button {
+  border: 1px solid var(--border) !important;
+  background: var(--primary) !important;
+  color: var(--on-primary) !important;
+  font-weight: 700;
+}
+
+.import-btn:hover,
+.filters-btn:hover,
+.rename-btn:hover,
+.notes-save-btn:hover,
+.rem-btn:hover,
+.rem-row-actions button:hover {
+  filter: brightness(1.06);
+}
+
+.import-btn-secondary,
+.rename-btn-secondary,
+.rem-row-actions .rem-link {
+  background: transparent !important;
+  color: var(--link) !important;
+  border-color: transparent !important;
+  text-decoration: underline;
+}
+
+.import-btn-danger {
+  background: var(--sev-high) !important;
+  border-color: var(--sev-high) !important;
+  color: #fff !important;
+}
+
+/* Remediation view toggle */
+.rem-view-toggle {
+  border-color: var(--border) !important;
+}
+
+.rem-view-btn {
+  background: var(--surface-2) !important;
+  color: var(--text) !important;
+  border-right-color: var(--border) !important;
+}
+
+.rem-view-btn.rem-active {
+  background: var(--primary) !important;
+  color: var(--on-primary) !important;
+}
+
+/* Status banners */
+.ui-state-highlight-blue,
+.dash-banner,
+.vuln-banner,
+.host-banner {
+  background: var(--info-bg) !important;
+  border: 1px solid var(--info-border) !important;
+  color: var(--text) !important;
+}
+
+.dash-banner-ok {
+  background: var(--ok-bg) !important;
+  border-color: var(--ok-border) !important;
+}
+
+.import-status-info { background: var(--info-bg) !important; border-color: var(--info-border) !important; }
+.import-status-success { background: var(--ok-bg) !important; border-color: var(--ok-border) !important; }
+.import-status-warn { background: var(--warn-bg) !important; border-color: var(--warn-border) !important; }
+.import-status-error { background: var(--err-bg) !important; border-color: var(--err-border) !important; }
+
+/* Severity palette overrides (global) */
+.critical,
+.vuln-sev-header.critical,
+.host-sev-header.critical,
+.critbg,
+td.critbg {
+  background-color: var(--sev-critical) !important;
+  color: #fff !important;
+}
+
+.high,
+.vuln-sev-header.high,
+.host-sev-header.high,
+.highbg,
+td.highbg {
+  background-color: var(--sev-high) !important;
+  color: #fff !important;
+}
+
+.medium,
+.vuln-sev-header.medium,
+.host-sev-header.medium,
+.medbg,
+td.medbg {
+  background-color: var(--sev-medium) !important;
+  color: #111 !important;
+}
+
+.low,
+.vuln-sev-header.low,
+.host-sev-header.low,
+.lowbg,
+td.lowbg {
+  background-color: var(--sev-low) !important;
+  color: #111 !important;
+}
+
+.info,
+.vuln-sev-header.info,
+.host-sev-header.info,
+.infobg,
+td.infobg {
+  background-color: var(--sev-info) !important;
+  color: #fff !important;
+}
+
+/* Ensure links remain readable inside severity background cells */
+.critbg a, .highbg a, .infobg a {
+  color: #fff !important;
+}
+
+.medbg a, .lowbg a {
+  color: #111 !important;
+}
+
+/* Vulnerability severity pills */
+.vulnlabel {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 12px;
+}
+
+.vulnlabel.medium,
+.vulnlabel.low {
+  color: #111 !important;
+}
+
+/* Accordion modernization (used in vuln + host reports) */
+
+/* Ensure accordion hit-area matches modernized header height */
+#accordion .toggle {
+  height: 48px !important;
+}
+
+#accordion {
+  font-family: var(--font-sans) !important;
+}
+
+.toggle ~ h6 {
+  border: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+  border-radius: 14px !important;
+  padding: 12px 12px 12px 44px !important;
+  font-size: 14px !important;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Better vertical alignment for accordion arrow + header content */
+.toggle ~ h6 .arrow {
+  top: 50% !important;
+  left: 18px !important;
+  margin-top: 0 !important;
+  transform: translate(-6px, -50%) !important;
+}
+
+/* Slightly tighter spacing for severity pill + NEW badge */
+.toggle ~ h6 .vulnlabel {
+  margin-right: 6px;
+}
+
+.toggle ~ h6 .vuln-badge-new,
+.toggle ~ h6 .host-badge-new,
+.toggle ~ h6 .vuln-badge-kev,
+.toggle ~ h6 .host-badge-kev {
+  margin-left: 2px;
+  margin-right: 6px;
+}
+
+
+.toggle ~ div {
+  border: 1px solid var(--border) !important;
+  background: var(--surface) !important;
+  border-radius: 14px !important;
+  padding: 14px 14px 14px 14px !important;
+  margin: -8px 0 14px 0;
+}
+
+.toggle:hover ~ h6 {
+  background: var(--surface-2) !important;
+}
+
+.toggle:checked ~ h6 {
+  border-color: var(--border) !important;
+  border-bottom-left-radius: 14px !important;
+  border-bottom-right-radius: 14px !important;
+}
+
+.arrow:before, .arrow:after {
+  background-color: var(--muted) !important;
+}
+
+/* Small badges */
+
+.vuln-badge-kev,
+.host-badge-kev {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--sev-info);
+  color: #fff !important;
+  padding: 2px 6px;
+  border-radius: 10px;
+  vertical-align: middle;
+}
+
+
+.vuln-badge-new,
+.host-badge-new,
+.vuln-badge-device-new {
+  background: rgba(15, 23, 42, 0.90) !important;
+  color: #fff !important;
+}
+
+html[data-theme="dark"] .vuln-badge-new,
+html[data-theme="dark"] .host-badge-new,
+html[data-theme="dark"] .vuln-badge-device-new {
+  background: rgba(226, 232, 240, 0.18) !important;
+}
+
+/* Print: force clean light output regardless of theme */
+@media print {
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  #header-wrapper {
+    background: #fff !important;
+  }
+  #nav, .app-shell-actions { display: none !important; }
+  section { box-shadow: none !important; }
+}
+
+/* Legibility fixes for dark mode + component hard-coded colors */
+.dash-chart-sub {
+  color: var(--muted) !important;
+}
+
+.import-help,
+.import-optional,
+.rename-help,
+.rename-status,
+.rem-status,
+.host-header-meta,
+.notes-status {
+  color: var(--muted) !important;
+}
+
+.host-link,
+.vuln-device-link {
+  color: var(--link) !important;
+}
+
+.rem-key-sub {
+  color: var(--muted) !important;
+}
+
+.rem-table {
+  border-color: var(--border) !important;
+}
+
+.rem-empty {
+  background: var(--surface-2) !important;
+  border-color: var(--border) !important;
+  color: var(--muted) !important;
+}

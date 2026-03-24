@@ -1,0 +1,68 @@
+/* filters.css - scoped to .filters-* */
+
+.filters-panel {
+  margin-bottom: 16px;
+}
+
+.filters-block {
+  margin-top: 10px;
+}
+
+.filters-label {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.filters-search {
+  width: 100%;
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #d0d4d6;
+}
+
+.filters-sev {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+}
+
+.filters-sev-item {
+  font-size: 13px;
+}
+
+.filters-toggle {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.filters-actions {
+  margin-top: 10px;
+}
+
+.filters-btn {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #474F51;
+  background: #474F51;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media print {
+  .filters-panel {
+    display: none;
+  }
+}
+
+.filters-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.filters-sections-item {
+  font-size: 13px;
+}

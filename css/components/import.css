@@ -1,0 +1,127 @@
+/* import.css - scoped to .import-* */
+
+.import-card {
+  border: 1px solid #d0d4d6;
+  border-radius: 6px;
+  padding: 16px;
+  background: #fff;
+  margin-bottom: 16px;
+}
+
+.import-card h3 {
+  margin: 0 0 8px 0;
+}
+
+.import-help {
+  margin-top: 0;
+  color: #474F51;
+}
+
+.import-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 900px) {
+  .import-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.import-field {
+  border: 1px solid #e2e6e8;
+  border-radius: 6px;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.import-label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.import-input {
+  width: 100%;
+}
+
+.import-required {
+  color: #D43F3A;
+  font-weight: 700;
+}
+
+.import-optional {
+  color: #474F51;
+  font-weight: 400;
+}
+
+.import-hint {
+  margin: 6px 0 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.import-actions {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.import-btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #357ABD;
+  background: #357ABD;
+  color: #fff;
+  cursor: pointer;
+}
+
+.import-btn:hover {
+  filter: brightness(0.95);
+}
+
+.import-btn-secondary {
+  background: #474F51;
+  border-color: #474F51;
+}
+
+.import-btn-danger {
+  background: #D43F3A;
+  border-color: #D43F3A;
+}
+
+.import-status {
+  margin-top: 12px;
+  white-space: pre-wrap;
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid transparent;
+}
+
+.import-status-info {
+  background: #C0E1F9;
+  border-color: #4C9ED9;
+}
+
+.import-status-success {
+  background: #d2f3b7;
+  border-color: #50ab05;
+}
+
+.import-status-warn {
+  background: #FFECBC;
+  border-color: #FDC431;
+}
+
+.import-status-error {
+  background: #FEF1EC;
+  border-color: #CD0A0A;
+}
+
+@media print {
+  .import-card {
+    display: none;
+  }
+}

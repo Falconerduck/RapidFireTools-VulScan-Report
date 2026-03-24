@@ -1,0 +1,5 @@
+#TYPE System.Management.Automation.PSCustomObject
+"IPAddress","HostName"
+"192.0.2.10","host-01.example.invalid"
+"198.51.100.20","host-02.example.invalid"
+"203.0.113.30","host-03.example.invalid"
