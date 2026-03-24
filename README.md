@@ -11,13 +11,10 @@ This package is intended to be copied, branded for a specific client, and used r
 - [Overview](#overview)
 - [What the Tool Does](#what-the-tool-does)
 - [How the Application Is Organized](#how-the-application-is-organized)
-- [End-to-End Workflow](#end-to-end-workflow)
 - [Requirements](#requirements)
 - [Client Setup](#client-setup)
 - [Usage](#usage)
 - [Recommended Operating Models](#recommended-operating-models)
-- [Best Practices](#best-practices)
-- [Data Persistence and Storage Behavior](#data-persistence-and-storage-behavior)
 - [Screenshots](#screenshots)
 - [Troubleshooting](#troubleshooting)
 - [Security and Data Handling](#security-and-data-handling)
@@ -125,32 +122,12 @@ It includes:
 
 ---
 
-## End-to-End Workflow
-
-The most effective way to use this tool is to treat it as a recurring monthly or weekly reporting workspace.
-
-```text
-Prepare client copy
-→ Brand for client
-→ Import current and previous scan exports
-→ Import prior client JSON
-→ Review Dashboard
-→ Triage issues in Vulnerability Report
-→ Validate host-specific impact in Host Report
-→ Normalize device names
-→ Disposition disappeared findings in Remediation Report
-→ Export updated client JSON
-→ Archive outputs for the next cycle
-```
-
----
-
 ## Requirements
 
 ### Supported environment
 
-- Windows workstation or jump box is the most practical operating model
-- Current version of Microsoft Edge or Google Chrome
+- Any OS with a GUI interface  
+- Current version of any web browser
 - No server, installer, or external dependency required
 
 ### Required inputs
@@ -167,16 +144,6 @@ Prepare client copy
 | Client Data JSON | No | Re-imports prior notes, device aliases, and remediation history |
 | By Device CSV | No | Improves host metadata and host-to-finding mapping |
 
-### Important operating note
-
-For the tool to be used to its fullest extent:
-
-1. always provide a **previous By Issue CSV**,
-2. always re-import the **most recent client JSON** from the prior cycle, and
-3. include the **By Device CSV** whenever it is available.
-
-Without those three elements, the tool still works, but its comparison and continuity value is reduced.
-
 ---
 
 ## Client Setup
@@ -185,12 +152,13 @@ This package has been sanitized so the client identity can be changed without ed
 
 ### Step 1: create a client-specific working copy
 
-Start from the sanitized master package and make a dedicated working copy for the target client.
+Start from the sanitized master template as downloaded here and make a dedicated working copy for the target client.
 
 ### Step 2: edit the client settings
 
 Update the following file:
 
+js\client-settings.js
 ```javascript
 window.VulScanReportClientSettings = Object.freeze({
   clientName: 'Client Name',
@@ -205,23 +173,17 @@ window.VulScanReportClientSettings = Object.freeze({
 |---|---:|---|
 | `clientName` | Yes | Human-readable client name shown in report headers |
 | `clientId` | No | Unique storage namespace for browser isolation; if left blank it is derived from `clientName` |
-| `logoFileName` | No | Logo file stored in the `images/` folder |
+| `logoFileName` | No | Logo file stored in the `images/` folder in case image name was changed |
 
 ### Step 3: replace the logo
 
 Replace the logo image in the `images/` folder, or update the configured logo filename to match the desired asset.
 
-### Recommended setup standard
-
-- Maintain **one sanitized master**
-- Create **one working copy per client**
-- Use a unique `clientId` if multiple clients may be reviewed on the same workstation/browser
-
 ---
 
 ## Usage
 
-This section is written as the primary operator guide for a new analyst.
+This section is written as the primary guide for a new user.
 
 ### 1. Launch the application
 
@@ -231,22 +193,22 @@ Open `index.html` in a supported browser. The Dashboard is the landing page.
 
 On the Dashboard, load:
 
-- **Current Scan - By Issue CSV**
-- **Previous Scan - By Issue CSV**
-- **Client Data JSON** from the last reporting cycle, if available
+- **Current Scan - By Issue CSV**, which is the current scan cycle
+- **Previous Scan - By Issue CSV**, which is the previous scan cycle 
+- **Client Data JSON** from the last reporting cycle, if previously used and is available
 - **By Device CSV**, if available
 
 Then click:
 
 **Import & Build Vulnerability Report**
 
-The application will parse the files locally and build the in-browser working dataset.
+The application will parse the files locally and build the working dataset.
 
 ### 3. Validate the import
 
 After import, confirm:
 
-- the Dashboard summary counts are populated,
+- the Dashboard summary counts are populated as expected,
 - the host list is populated,
 - the client branding appears correctly in the page header,
 - there are no visible import errors,
@@ -254,54 +216,35 @@ After import, confirm:
 
 If the Dashboard is empty after import, stop there and correct the input files before proceeding.
 
-### 4. Review the Dashboard first
-
-Use the Dashboard as the first pass sanity check.
-
-Focus on:
-
-- total findings,
-- total hosts,
-- severity distribution,
-- number of **new** findings, and
-- the host table for obvious anomalies.
-
-This step is important because it quickly confirms whether the current scan is materially different from the previous one and whether the dataset appears complete.
-
-### 5. Work the Vulnerability Report
+### 4. Work the Vulnerability Report
 
 Move to the Vulnerability Report for analyst triage.
 
 Recommended process:
 
 1. Start with **Critical** and **High** findings.
-2. Use **NEW only** to isolate change since the previous scan.
-3. Use **Known exploited only** to prioritize issues with active exploitation relevance.
+2. Use **NEW only** to isolate change since the previous scan. Must have every other filter checked except for **Known Exploited Only** for maximum visibility.
+3. Use **Known exploited only** to prioritize issues with active exploitation relevance. Must have every other filter checked except for **New Only** for maximum visibility.
 4. Expand the detail sections needed for analysis.
 5. Review affected devices for each issue.
 6. Enter remediation or analyst notes where useful.
-7. Click **Save** on note entries; notes are not committed by typing alone.
-
-#### Important behavior
-
-The report supports filtering and targeted reading, but it does not auto-save note edits. Users must save notes explicitly.
+7. Click **Save** on note entries; notes are not saved by typing alone.
+8. If there is no other work to be done, make sure to export the Data JSON in the Dashboard to be uploaded in the future to load the data back. 
 
 ### 6. Drill into the Host Report when needed
 
-Use the Host Report when you need device-specific clarity.
+Use the Host Report if you need device-specific information.
 
 Common reasons to use it:
 
 - validating whether a new issue is limited to one device,
 - reviewing all exposure for a specific server or workstation,
-- supporting technical review with infrastructure owners,
-- checking affected-device context from a vulnerability entry.
 
 The Host Report is best used as a drilldown from the Dashboard or Vulnerability Report rather than as the first page of review.
 
 ### 7. Normalize device naming
 
-Open the Device Names page once scan data is loaded.
+Open the Device Names page once scan data is loaded to add hostname data. If any hostnames are changed, make sure to export the Data JSON to save between scans.
 
 Use it to:
 
@@ -311,17 +254,17 @@ Use it to:
 
 #### Recommended use
 
-Do this early in the lifecycle for recurring clients. Once device aliases are established, every future review becomes easier to read.
+Do this early in the lifecycle for recurring clients. Once device aliases are established, every future review becomes easier to read and pinpoint a specific device.
 
 #### Important behavior
 
-Device aliases are display-only. They do not modify the source scan exports.
+Device aliases are display-only. They do not modify the source scan exports. These are also not saved automatically, must be exported as a JSON to be uploaded in the future to load the data back. 
 
-### 8. Use the Remediation Report to track disposition
+### 8. Use the Remediation Report to track resolution changes (**WORK IN PROGRESS**)
 
-Open the Remediation Report after the current and previous scans have been compared.
+Open the Remediation Report after the current and previous scans have been compared. Be advised this tab is newer and I am still working through bugs.
 
-Use **Needs Review** to process findings that no longer appear and assign a disposition such as:
+Use **Needs Review** to process findings that no longer appear and assign a resolution status such as:
 
 - Mitigated
 - Accepted Risk
@@ -329,18 +272,17 @@ Use **Needs Review** to process findings that no longer appear and assign a disp
 - Removed Device
 - Other
 
-Use **Mitigations Log** as the retained history of resolved or dispositioned items.
+Use **Mitigations Log** as the retained history of resolved or dispositioned items captured from this tool.
 
 #### Recommended process
 
 - Start in **By Vulnerability** view for broad issue-level cleanup
-- Switch to **By Device** view when asset-level validation is needed
-- Use bulk action where many rows share the same disposition
-- Export the review queue and mitigation log CSVs when external reporting or audit evidence is needed
+- Switch to **By Device** view when device-level remediation is needed
+- Use bulk action where many rows share the same resulution status
 
-### 9. Export retained working data before closing
+### 9. Export retained working data before closing (**IMPORTANT**)
 
-Before ending the session, export the retained JSON.
+Before ending the session, make sure to export the Data JSON.
 
 Depending on the page, the application may label this action as either:
 
@@ -351,21 +293,19 @@ These export actions preserve the reusable working data that carries forward acr
 
 - remediation notes,
 - device aliases, and
-- remediation tracking state.
+- resolution tracking state.
 
 #### Critical rule
 
 Do not close the review cycle without exporting the updated JSON.
 
-Browser session state is not the long-term record.
+Browser session state is not the long-term record and will be cleared upon brower refresh.
 
 ### 10. Archive the cycle artifacts
 
 At the end of each reporting cycle, store the following together:
 
 - current By Issue CSV,
-- previous By Issue CSV,
-- optional By Device CSV,
 - exported client JSON,
 - any remediation CSV extracts used externally.
 
@@ -403,45 +343,6 @@ Use this order:
 8. Update notes, aliases, and remediation state
 9. Export the refreshed client JSON
 10. Archive the cycle deliverables
-
----
-
-## Best Practices
-
-### To get the most value from the tool
-
-- Review **NEW only** first, then widen scope
-- Use **Known exploited only** as a rapid prioritization pass
-- Import the prior client JSON on every recurring cycle
-- Standardize aliases early for recurring environments
-- Export updated JSON after meaningful work, not only at the very end
-- Keep one package copy per client when possible
-
-### To reduce analyst error
-
-- Do not rely on memory for last-cycle notes; import the JSON
-- Do not assume browser state is permanent
-- Do not mix multiple clients in one working copy unless `clientId` isolation is intentional and verified
-- Do not skip the Dashboard sanity check after import
-
----
-
-## Data Persistence and Storage Behavior
-
-The application uses browser storage for active in-session operation.
-
-### What is temporary
-
-- the currently loaded report state in the browser session
-- theme preference and local UI state
-
-### What should be treated as the retained record
-
-- the exported JSON produced from **Export Device Data JSON** or **Export Client Data JSON**
-
-### Practical meaning
-
-If a user enters notes, aliases, or remediation actions but does not export the JSON, that work should be considered at risk of loss.
 
 ---
 
